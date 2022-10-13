@@ -4,12 +4,14 @@ import helmet from 'helmet';
 
 import { connectDB } from '../../config/mongodb';
 import userRouter from '../../modules/users/infraestructure/routes/user.routes'
+import authRouter from '../../modules/users/infraestructure/routes/auth.routes'
 
 export default class Server{
   private app: Application;
   private port: string;
   private apiPath = {
-      users: '/api/users'
+      users: '/api/users',
+      auth: '/api/auth'
   }
 
   constructor(){
@@ -26,7 +28,7 @@ export default class Server{
   }
   middlewares() {
     this.app.use(cors());
-    // this.app.use(helmet());
+    this.app.use(helmet());
     this.app.use(express.json());
 
     this.app.use(express.static('public'))
@@ -34,6 +36,7 @@ export default class Server{
 
   routes() {
     this.app.use(this.apiPath.users, userRouter);
+    this.app.use(this.apiPath.auth, authRouter);
   }
 
   listen() {

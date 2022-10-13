@@ -1,12 +1,11 @@
 import { Request, Response } from "express"
 import { IUser } from "modules/users/domain/users";
-import * as UserService from '../../application/user.services';
+import * as UserService from '../../application/user.service';
 
 
 
 export const getUserAll = async (req: Request, res: Response) => {
   try {
-    // let { limit, pageNum } = req.query
 
     const users = await UserService.getUserAll();
     

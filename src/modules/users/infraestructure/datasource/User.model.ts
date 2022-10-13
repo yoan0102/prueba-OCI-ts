@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { IUser } from 'modules/users/domain/users';
 
-const UserSchema = new mongoose.Schema<any>(
+const UserSchema = new mongoose.Schema<IUser>(
   {
     nick_name: {
       type: String,

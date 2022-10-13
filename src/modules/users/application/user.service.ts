@@ -1,11 +1,9 @@
 import { IUser } from "../domain/users";
 import User from "../infraestructure/datasource/User.model";
 
-export const getUserAll = async (pageSize = 5, pageNum = 1) => {
-  const skips = pageSize * (pageNum - 1);
+export const getUserAll = async () => {
   const query = { status: 1 };
-  return await User.find(query).skip(skips).limit(pageSize);
- 
+  return await User.find(query);
 };
 
 export const getUserById = async (id:string) => {
