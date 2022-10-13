@@ -4,7 +4,7 @@ export interface IUser {
   last_name: string;
   password: string;
   position: string;
-  role?: 'ADMIN_ROLE' |'USER_ROLE' ;
+  role?: 'ADMIN_ROLE'|'USER_ROLE';
   status?: boolean;
   razon_remove: string;
 }

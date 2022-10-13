@@ -9,6 +9,7 @@ export const getUserAll = async (req: Request, res: Response) => {
 
     const users = await UserService.getUserAll();
     
+    
     return res.json({
      users
     });
