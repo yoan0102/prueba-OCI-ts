@@ -3,15 +3,17 @@ import cors from 'cors'
 import helmet from 'helmet';
 
 import { connectDB } from '../../config/mongodb';
-import userRouter from '../../modules/users/infraestructure/routes/user.routes'
-import authRouter from '../../modules/users/infraestructure/routes/auth.routes'
+import userRouter from '../../modules/users/infraestructure/routes/user.routes';
+import authRouter from '../../modules/users/infraestructure/routes/auth.routes';
+import circuloRouter from '../../modules/circulos/infraestructure/routes/CIRCULO.routes';
 
 export default class Server{
   private app: Application;
   private port: string;
   private apiPath = {
       users: '/api/users',
-      auth: '/api/auth'
+      auth: '/api/auth',
+      circulo: '/api/circulo'
   }
 
   constructor(){
@@ -37,6 +39,7 @@ export default class Server{
   routes() {
     this.app.use(this.apiPath.users, userRouter);
     this.app.use(this.apiPath.auth, authRouter);
+    this.app.use(this.apiPath.circulo, circuloRouter);
   }
 
   listen() {
