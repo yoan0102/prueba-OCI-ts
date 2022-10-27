@@ -7,5 +7,6 @@ export interface IUser {
   role?: 'ADMIN_ROLE'|'USER_ROLE';
   status?: boolean;
   razon_remove: string;
+  comparePasswords: (password:string) => boolean
 }
 
