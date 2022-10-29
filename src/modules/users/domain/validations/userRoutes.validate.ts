@@ -1,6 +1,7 @@
 import { check } from 'express-validator';
 import { validateResultError } from '../../../../shared/validations/validateResultError';
 import { issetNickName } from './issetNickName.valitation';
+import { issetRoleValido } from './issetRoleValido.validation';
 import { issetUserId } from './issetUserId.validation';
 
 export const validateRouteGetUserByID = [
@@ -9,13 +10,17 @@ export const validateRouteGetUserByID = [
 ];
 
 export const validateRouteCreateUser = [
-	check('nick_name').notEmpty().withMessage('El nickname es obligatorio').custom(issetNickName),
+	check('nick_name')
+		.notEmpty()
+		.withMessage('El nickname es obligatorio')
+		.not()
+		.custom(issetNickName)
+		.withMessage("User doesn't exist"),
 	check('first_name', 'EL nombre es obligatorio').notEmpty(),
 	check('last_name', 'EL apillido es obligatorio').notEmpty(),
 	check('password', 'Password es obligatorio y más de 5 caracteres').isLength({ min: 6 }),
 	check('position', 'La posisiton que ocupa en su empresa es obligatorio').notEmpty(),
-	check('role', 'No es un role permitido').isIn(['ADMIN_ROLE', 'USER_ROLE']),
-	// check('role').custom(issetRoleValido),
+	check('role').isIn(['ADMIN_ROLE', 'USER_ROLE']).withMessage('No es un role permitido').custom(issetRoleValido),
 	validateResultError,
 ];
 
