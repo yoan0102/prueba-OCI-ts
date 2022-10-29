@@ -29,7 +29,6 @@ export const validateRouteUpdateUser = [
 export const validateRouteRemoveUser = [
 	// jwtValid,
 	// isAdminRole,
-	check('id', 'ID no es valido').isMongoId(),
-	// check('id').custom(issetUserId),
+	check('id', 'ID no es valido').isMongoId().custom(issetUserId),
 	validateResultError,
 ];
