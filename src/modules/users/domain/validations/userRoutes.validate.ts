@@ -1,15 +1,15 @@
 import { check } from 'express-validator';
 import { validateResultError } from '../../../../shared/validations/validateResultError';
+import { issetNickName } from './issetNickName.valitation';
+import { issetUserId } from './issetUserId.validation';
 
 export const validateRouteGetUserByID = [
-	// check('id').custom(issetUserId),
-	check('id').isMongoId().withMessage('Id no válido'),
+	check('id').isMongoId().withMessage('Id no válido').custom(issetUserId),
 	validateResultError,
 ];
 
 export const validateRouteCreateUser = [
-	check('nick_name', 'El nickname es obligatorio').notEmpty(),
-	// check('nickname').custom(issetNickName),
+	check('nick_name').notEmpty().withMessage('El nickname es obligatorio').custom(issetNickName),
 	check('first_name', 'EL nombre es obligatorio').notEmpty(),
 	check('last_name', 'EL apillido es obligatorio').notEmpty(),
 	check('password', 'Password es obligatorio y más de 5 caracteres').isLength({ min: 6 }),
