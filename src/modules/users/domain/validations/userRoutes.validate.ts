@@ -22,8 +22,7 @@ export const validateRouteCreateUser = [
 export const validateRouteUpdateUser = [
 	// jwtValid,
 	// isAdminRole,
-	check('id', 'ID no valido').isMongoId(),
-	// check('id').custom(issetUserId),
+	check('id', 'ID no valido').isMongoId().custom(issetUserId),
 	validateResultError,
 ];
 
