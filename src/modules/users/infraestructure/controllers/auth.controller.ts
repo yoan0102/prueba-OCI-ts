@@ -6,7 +6,6 @@ export const login = async (req: Request, res: Response) => {
 		const { nickname, password } = req.body;
 
 		const resp = await AuthService.login(nickname, password);
-		console.log(resp);
 
 		return res.json({
 			...resp,
