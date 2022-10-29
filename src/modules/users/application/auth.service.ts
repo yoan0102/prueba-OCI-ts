@@ -1,31 +1,23 @@
 import User from '../infraestructure/datasource/User.model';
-import {generateToken} from './utils/generateToken';
+import { generateToken } from './utils/generateToken';
 
-export const login = async (nickname:string, password:string) => {
-  try {
+export const login = async (nickname: string, password: string) => {
+	try {
+		const user = await User.findOne({ nickname });
 
-    const user = await User.findOne({ nickname });
-    
-    if (!user) {
-      throw new Error(`User ${nickname} no existe`);
-    }
+		const validPassword = await user?.comparePasswords(password);
+		if (!validPassword) {
+			throw new Error('Password is not valid');
+		}
 
-    const validPassword = await user.comparePasswords(password);
-    if (!validPassword) {
-      throw new Error('Password is not valid');;
-    }
-    
-		if (user.status === false) { 
-      throw new Error(`User ${nickname} no existe`);;
-    }
+		if (user?.status === false) {
+			throw new Error(`User ${nickname} no existe`);
+		}
 
-    
-    const token = generateToken(user._id);
-    
+		const token = generateToken(user?._id);
 
-    return {token, user}
-
-  } catch (error) {
-    
-  }
+		return { token, user };
+	} catch (error) {
+		console.log(error);
+	}
 };
