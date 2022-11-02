@@ -14,7 +14,7 @@ export default class Server {
 	private apiPath = {
 		users: '/api/users',
 		auth: '/api/auth',
-		circulo: '/api/circulo',
+		circulo: '/api/circulos',
 	};
 
 	constructor() {
