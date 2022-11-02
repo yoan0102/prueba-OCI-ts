@@ -79,17 +79,17 @@ export const validateRouteCreateCirculo = [
 		.withMessage('El  porciento asistencia 2do ano es de tipo numerico')
 		.notEmpty()
 		.withMessage('El  porciento asistencia 2do ano es obligatoria'),
-	check('matricula3')
+	check('porciento_asistencia3')
 		.isNumeric()
 		.withMessage('El  porciento asistencia 3ro ano es de tipo numerico')
 		.notEmpty()
 		.withMessage('El  porciento asistencia 3ro ano es obligatoria'),
-	check('matricula4')
+	check('porciento_asistencia4')
 		.isNumeric()
 		.withMessage('El  porciento asistencia 4to ano es de tipo numerico')
 		.notEmpty()
 		.withMessage('El  porciento asistencia 4to ano es obligatoria'),
-	check('matricula5')
+	check('porciento_asistencia5')
 		.isNumeric()
 		.withMessage('El  porciento asistencia 5to ano es de tipo numerico')
 		.notEmpty()
