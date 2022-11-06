@@ -1,12 +1,18 @@
 import { Router } from 'express';
 
-import { createCirculo, getCirculoAll, getCirculoById, removeCirculoById, updateCirculoById } from '../controllers/circulo.controller';
 import {
-  validateRouteGetCirculoByID,
-  validateRouteCreateCirculo,
-  validateRouteRemoveCirculo,
-  validateRouteUpdateCirculo
-} from '../../domain/validations/circuloRoutes.validate';
+	createCirculo,
+	getCirculoAll,
+	getCirculoById,
+	removeCirculoById,
+	updateCirculoById,
+} from '../controllers/children.controller';
+import {
+	validateRouteGetCirculoByID,
+	validateRouteCreateCirculo,
+	validateRouteRemoveCirculo,
+	validateRouteUpdateCirculo,
+} from '../../domain/validations/childrenRoutes.validate';
 
 const router = Router();
 
@@ -14,13 +20,10 @@ router.get('/', getCirculoAll);
 
 router.get('/:id', validateRouteGetCirculoByID, getCirculoById);
 
-router.post('/',validateRouteCreateCirculo, createCirculo);
+router.post('/', validateRouteCreateCirculo, createCirculo);
 
 router.patch('/:id', validateRouteUpdateCirculo, updateCirculoById);
 
 router.delete('/:id', validateRouteRemoveCirculo, removeCirculoById);
 
-
-
-
-export default router
+export default router;

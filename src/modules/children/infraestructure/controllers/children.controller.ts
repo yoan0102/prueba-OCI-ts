@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ICirculo } from './../../domain/circulo.d';
-import * as CirculoService from '../../application/circulo.service';
+import { IChildren } from './../../domain/children.d';
+import * as ChildrenService from '../../application/children.service';
 
-export const getCirculoAll = async (req: Request, res: Response) => {
+export const getChildrenAll = async (req: Request, res: Response) => {
 	try {
-		const circulos = await CirculoService.getCirculoAll();
+		const circulos = await ChildrenService.getChildrenAll();
 
 		return res.json({
 			circulos,
@@ -17,11 +17,11 @@ export const getCirculoAll = async (req: Request, res: Response) => {
 	}
 };
 
-export const getCirculoById = async (req: Request, res: Response) => {
+export const getCHildrenById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
 
-		const circulo = await CirculoService.getCirculoById(id);
+		const circulo = await ChildrenService.getCirculoById(id);
 
 		return res.json({
 			circulo,
@@ -35,9 +35,9 @@ export const getCirculoById = async (req: Request, res: Response) => {
 };
 
 export const createCirculo = async (req: Request, res: Response) => {
-	const circuloBody: ICirculo = req.body;
+	const circuloBody: IChildren = req.body;
 	try {
-		const circulo = await CirculoService.createCirculo(circuloBody);
+		const circulo = await ChildrenService.createCirculo(circuloBody);
 		res.status(201).json(circulo);
 	} catch (error) {
 		console.log(error);
@@ -50,9 +50,9 @@ export const createCirculo = async (req: Request, res: Response) => {
 export const updateCirculoById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
-		const entity: ICirculo = req.body;
+		const entity: IChildren = req.body;
 
-		const circuloUpdated = await CirculoService.updateCirculoById(id, entity);
+		const circuloUpdated = await ChildrenService.updateCirculoById(id, entity);
 		res.json(circuloUpdated);
 	} catch (error) {
 		console.log(error);
@@ -66,7 +66,7 @@ export const removeCirculoById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
 
-		const circuloUpdated = await CirculoService.removeCirculoById(id);
+		const circuloUpdated = await ChildrenService.removeCirculoById(id);
 		res.json(circuloUpdated);
 	} catch (error) {
 		console.log(error);
