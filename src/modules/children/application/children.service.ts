@@ -1,23 +1,23 @@
-import { ICirculo } from '../domain/children';
-import Circulo from '../infraestructure/datasource/Children.model';
+import { IChildren } from '../domain/children';
+import Children from '../infraestructure/datasource/Children.model';
 
-export const getCirculoAll = async () => {
+export const getChildrenAll = async () => {
 	const query = { status: 1 };
-	return await Circulo.find(query);
+	return await Children.find(query);
 };
 
-export const getCirculoById = async (id: string) => {
-	return await Circulo.findById(id);
+export const getChildrenById = async (id: string) => {
+	return await Children.findById(id);
 };
 
-export const createCirculo = async (entity: ICirculo) => {
-	return await Circulo.create(entity);
+export const createChildren = async (entity: IChildren) => {
+	return await Children.create(entity);
 };
 
-export const updateCirculoById = async (id: string, entity: ICirculo) => {
-	return await Circulo.findByIdAndUpdate(id, entity, { new: true });
+export const updateChildrenById = async (id: string, entity: IChildren) => {
+	return await Children.findByIdAndUpdate(id, entity, { new: true });
 };
 
-export const removeCirculoById = async (id: string) => {
-	return await Circulo.findByIdAndUpdate(id, { status: 0 }, { new: true });
+export const removeChildrenById = async (id: string) => {
+	return await Children.findByIdAndUpdate(id, { status: 0 }, { new: true });
 };
