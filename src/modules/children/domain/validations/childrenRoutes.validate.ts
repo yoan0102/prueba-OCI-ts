@@ -107,9 +107,11 @@ export const validateRouteUpdateChildren = [
 		.withMessage('El numero de identidad es un numero')
 		.isLength({ min: 11, max: 11 })
 		.withMessage('El numero de identidad tiene requiere 11 caracteres'),
-	check('age').isNumeric().withMessage('La edad es un numero'),
-	// .isLength({ min: 11, max: 11 })
-	// .withMessage('El numero de identidad tiene requiere 11 caracteres')
+	check('age')
+		.isNumeric()
+		.withMessage('La edad es un numero')
+		.isLength({ min: 1, max: 5 })
+		.withMessage('El numero de identidad tiene requiere 11 caracteres'),
 	check('year_of_life')
 		.isNumeric()
 		.withMessage('El ano de vida es un numero')
