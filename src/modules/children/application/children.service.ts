@@ -1,5 +1,5 @@
-import { ICirculo } from '../domain/circulo';
-import Circulo from '../infraestructure/datasource/Circulo.model';
+import { ICirculo } from '../domain/children';
+import Circulo from '../infraestructure/datasource/Children.model';
 
 export const getCirculoAll = async () => {
 	const query = { status: 1 };

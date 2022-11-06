@@ -1,76 +1,78 @@
 import mongoose from 'mongoose';
-import { ICirculo } from './../../domain/circulo.d';
+import { IChildren } from './../../domain/children.d';
 
-const CirculoSchema = new mongoose.Schema<ICirculo>(
+const ChildrenSchema = new mongoose.Schema<IChildren>(
 	{
-		no: {
-			type: Number,
-			unique: true,
-			required: true,
-		},
-		name: {
+		nameChildren: {
 			type: String,
 			required: true,
 		},
-		capacidad_total: {
+		lastNameChildren: {
+			type: String,
+			required: true,
+		},
+		lastNameChildren2: {
+			type: String,
+			required: true,
+		},
+		noIdentity: {
+			type: Number,
+			unique: true,
+			required: true,
+			min: [11, 'El numero de Indentidad necesita minimo 11 caracteres'],
+			max: [11, 'El numero de Indentidad necesita maximo 11 caracteres'],
+		},
+		age: {
 			type: Number,
 			required: true,
 		},
-		normed_capacity2: {
+		year_of_life: {
 			type: Number,
 			required: true,
 		},
-		normed_capacity3: {
-			type: Number,
+		sex: {
+			type: String,
+			required: true,
+			enum: {
+				values: ['masculino', 'masculino'],
+				message: '{VALUE} no soportado',
+			},
+		},
+		street: {
+			type: String,
 			required: true,
 		},
-		normed_capacity4: {
-			type: Number,
+		between: {
+			type: String,
 			required: true,
 		},
-		normed_capacity5: {
-			type: Number,
+		house: {
+			type: String,
 			required: true,
 		},
-		matricula_total: {
-			type: Number,
+		stair: {
+			type: String,
 			required: true,
 		},
-		matricula2: {
-			type: Number,
+		locality: {
+			type: String,
 			required: true,
 		},
-		matricula3: {
-			type: Number,
+		cPopular: {
+			type: String,
 			required: true,
 		},
-		matricula4: {
-			type: Number,
+		municipality: {
+			type: String,
 			required: true,
 		},
-		matricula5: {
-			type: Number,
-			required: true,
-		},
-		porciento_asistencia2: {
-			type: Number,
-			required: true,
-		},
-		porciento_asistencia3: {
-			type: Number,
-			required: true,
-		},
-		porciento_asistencia4: {
-			type: Number,
-			required: true,
-		},
-		porciento_asistencia5: {
-			type: Number,
+		province: {
+			type: String,
 			required: true,
 		},
 		status: {
 			type: Boolean,
-			default: 1,
+			default: true,
 		},
 	},
 	{
@@ -79,4 +81,4 @@ const CirculoSchema = new mongoose.Schema<ICirculo>(
 	}
 );
 
-export default mongoose.model('circulo', CirculoSchema);
+export default mongoose.model<IChildren>('circulo', ChildrenSchema);
