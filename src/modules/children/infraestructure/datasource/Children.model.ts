@@ -19,8 +19,6 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			type: Number,
 			unique: true,
 			required: true,
-			min: [11, 'El numero de Indentidad necesita minimo 11 caracteres'],
-			max: [11, 'El numero de Indentidad necesita maximo 11 caracteres'],
 		},
 		age: {
 			type: Number,
@@ -78,4 +76,4 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 	}
 );
 
-export default mongoose.model<IChildren>('circulo', ChildrenSchema);
+export default mongoose.model<IChildren>('children', ChildrenSchema);
