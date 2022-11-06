@@ -48,11 +48,9 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 		},
 		house: {
 			type: String,
-			required: true,
 		},
 		stair: {
 			type: String,
-			required: true,
 		},
 		locality: {
 			type: String,
@@ -68,7 +66,6 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 		},
 		province: {
 			type: String,
-			required: true,
 		},
 		status: {
 			type: Boolean,

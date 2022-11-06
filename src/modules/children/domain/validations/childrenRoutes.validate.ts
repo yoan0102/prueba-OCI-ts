@@ -10,102 +10,99 @@ const validateResultError = (req: Request, res: Response, next: NextFunction) =>
 	next();
 };
 
-export const validateRouteGetCirculoByID = [
+export const validateRouteGetChildrenByID = [
 	// check('id').custom(issetUserId),
 	check('id').isMongoId().withMessage('Id no válido'),
 	validateResultError,
 ];
 
-export const validateRouteCreateCirculo = [
+export const validateRouteCreateChildren = [
 	// jwtValid,
 	// isAdminRole
-	check('no').isNumeric().withMessage('El no es de tipo numerico').notEmpty().withMessage('El no es obligatorio'),
-	check('name', 'EL nombre es obligatorio').notEmpty(),
-	//capcacidad
-	check('capacidad_total')
-		.isNumeric()
-		.withMessage('La capacidad total es de tipo numerico')
+	check('nameChildren')
+		.isString()
+		.withMessage('El nombre es un texto')
 		.notEmpty()
-		.withMessage('La capacidad total es obligatorio'),
-	check('normed_capacity2')
-		.isNumeric()
-		.withMessage('La capacidad de 2do ano es de tipo numerico')
+		.withMessage('El nombre es obligatorio'),
+	check('lastNameChildren')
+		.isString()
+		.withMessage('El primer apellido es un texto')
 		.notEmpty()
-		.withMessage('La capacidad de 2do ano es obligatoria'),
-	check('normed_capacity3')
-		.isNumeric()
-		.withMessage('La capacidad de 3er ano es de tipo numerico')
+		.withMessage('El primer apellido es obligatorio'),
+	check('lastNameChildren2')
+		.isString()
+		.withMessage('El segundo apellido es un texto')
 		.notEmpty()
-		.withMessage('La capacidad de 3er ano es obligatoria'),
-	check('normed_capacity4', 'La capacidad de 4to ano es obligatoria')
+		.withMessage('El segundo apellido es obligatorio'),
+	check('noIdentity')
 		.isNumeric()
-		.withMessage('La capacidad de 4to ano es de tipo numerico')
+		.withMessage('El numero de identidad es un numero')
+		.isLength({ min: 11, max: 11 })
+		.withMessage('El numero de identidad tiene requiere 11 caracteres')
 		.notEmpty()
-		.withMessage('La capacidad de 4to ano es obligatoria'),
-	check('normed_capacity5')
+		.withMessage('El numero de identidad es obligatorio'),
+	check('age')
 		.isNumeric()
-		.withMessage('La capacidad de 5to ano es de tipo numerico')
+		.withMessage('La edad es un numero')
+		// .isLength({ min: 11, max: 11 })
+		// .withMessage('El numero de identidad tiene requiere 11 caracteres')
 		.notEmpty()
-		.withMessage('La capacidad de 5to ano es obligatoria'),
-	//Matricula
-	check('matricula_total')
+		.withMessage('La edad es obligatoria'),
+	check('year_of_life')
 		.isNumeric()
-		.withMessage('La matricula total ano es de tipo numerico')
+		.withMessage('El ano de vida es un numero')
+		.isIn(['2', '3', '4', '5', '6'])
+		.withMessage('EL ano de vida solo pueden ser 2,3,4,5 y 6')
 		.notEmpty()
-		.withMessage('La matricula total es obligatoria'),
-	check('matricula2', 'La matricula de 2do ano es obligatoria')
-		.isNumeric()
-		.withMessage('La matricula de 2do  ano es de tipo numerico')
+		.withMessage('El ano de vida es obligatorio'),
+	check('sex')
+		.isString()
+		.withMessage('El sexo es un texto')
+		.isIn(['femenino', 'masculino'])
+		.withMessage('el sexo solo puede ser masculino o femenino')
 		.notEmpty()
-		.withMessage('La matricula de 2do ano es obligatoria'),
-	check('matricula3')
-		.isNumeric()
-		.withMessage('La matricula de 3ro ano ano es de tipo numerico')
+		.withMessage('El sexo es obligatorio'),
+	check('street')
+		.isString()
+		.withMessage('La calle donde vive el nino es un texto')
 		.notEmpty()
-		.withMessage('La matricula de 3ro ano es obligatoria'),
-	check('matricula4', 'La matricula de 4to ano es obligatoria')
-		.isNumeric()
-		.withMessage('La matricula de 4to ano es de tipo numerico')
+		.withMessage('La calle donde vive el nino es obligatoria'),
+	check('between')
+		.isString()
+		.withMessage('Las entre calles donde vive el nino es un texto')
 		.notEmpty()
-		.withMessage('La matricula de 4to ano es obligatoria'),
-	check('matricula5')
-		.isNumeric()
-		.withMessage('La matricula de 5to ano  es de tipo numerico')
+		.withMessage('Las entre calles donde vive el nino son obligatorias'),
+	check('house').isString().withMessage('El numero de casa donde vive el nino es un texto'),
+	check('stair').isString().withMessage('El numero de escalera de edificio donde vive el nino es un texto'),
+	check('locality')
+		.isString()
+		.withMessage('La localidad donde vive el nino es un texto')
 		.notEmpty()
-		.withMessage('La matricula de 5to ano es obligatoria'),
-	//asistencia
-	check('porciento_asistencia2')
-		.isNumeric()
-		.withMessage('El  porciento asistencia 2do ano es de tipo numerico')
+		.withMessage('La localidad donde vive el nino es obligatoria'),
+	check('cPopular')
+		.isString()
+		.withMessage('El consejo popular donde vive el nino es un texto')
 		.notEmpty()
-		.withMessage('El  porciento asistencia 2do ano es obligatoria'),
-	check('porciento_asistencia3')
-		.isNumeric()
-		.withMessage('El  porciento asistencia 3ro ano es de tipo numerico')
+		.withMessage('El consejo popular donde vive el nino es obligatorio'),
+	check('municipality')
+		.isString()
+		.withMessage('El municipo donde vive el nino es un texto')
 		.notEmpty()
-		.withMessage('El  porciento asistencia 3ro ano es obligatoria'),
-	check('porciento_asistencia4')
-		.isNumeric()
-		.withMessage('El  porciento asistencia 4to ano es de tipo numerico')
-		.notEmpty()
-		.withMessage('El  porciento asistencia 4to ano es obligatoria'),
-	check('porciento_asistencia5')
-		.isNumeric()
-		.withMessage('El  porciento asistencia 5to ano es de tipo numerico')
-		.notEmpty()
-		.withMessage('El  porciento asistencia 5to ano es obligatoria'),
-	// check('id').custom(issetCirculoId),
+		.withMessage('El municipio donde vive el nino es obligatorio'),
+	check('province').isString().withMessage('La provincia donde vive el nino es un texto'),
+
+	// check('id').custom(issetChildrenId),
 	validateResultError,
 ];
 
-export const validateRouteUpdateCirculo = [
+export const validateRouteUpdateChildren = [
 	// jwtValid,
 	// isAdminRole,
 	check('id', 'ID no valido').isMongoId(),
 	validateResultError,
 ];
 
-export const validateRouteRemoveCirculo = [
+export const validateRouteRemoveChildren = [
 	// jwtValid,
 	// isAdminRole,
 	check('id', 'ID no es valido').isMongoId(),
