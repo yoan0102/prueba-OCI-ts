@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import {
-	createCirculo,
-	getCirculoAll,
-	getCirculoById,
-	removeCirculoById,
-	updateCirculoById,
+	createChildren,
+	getChildrenAll,
+	getChildrenById,
+	removeChildrenById,
+	updateChildrenById,
 } from '../controllers/children.controller';
 import {
 	validateRouteGetCirculoByID,
@@ -16,14 +16,14 @@ import {
 
 const router = Router();
 
-router.get('/', getCirculoAll);
+router.get('/', getChildrenAll);
 
-router.get('/:id', validateRouteGetCirculoByID, getCirculoById);
+router.get('/:id', validateRouteGetChildrenByID, getChildrenById);
 
-router.post('/', validateRouteCreateCirculo, createCirculo);
+router.post('/', validateRouteCreateChildren, createChildren);
 
-router.patch('/:id', validateRouteUpdateCirculo, updateCirculoById);
+router.patch('/:id', validateRouteUpdateChildren, updateChildrenById);
 
-router.delete('/:id', validateRouteRemoveCirculo, removeCirculoById);
+router.delete('/:id', validateRouteRemoveChildren, removeChildrenById);
 
 export default router;
