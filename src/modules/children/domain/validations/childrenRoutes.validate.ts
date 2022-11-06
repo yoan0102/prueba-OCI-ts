@@ -99,6 +99,35 @@ export const validateRouteUpdateChildren = [
 	// jwtValid,
 	// isAdminRole,
 	check('id', 'ID no valido').isMongoId(),
+	check('nameChildren').isString().withMessage('El nombre es un texto'),
+	check('lastNameChildren').isString().withMessage('El primer apellido es un texto'),
+	check('lastNameChildren2').isString().withMessage('El segundo apellido es un texto'),
+	check('noIdentity')
+		.isNumeric()
+		.withMessage('El numero de identidad es un numero')
+		.isLength({ min: 11, max: 11 })
+		.withMessage('El numero de identidad tiene requiere 11 caracteres'),
+	check('age').isNumeric().withMessage('La edad es un numero'),
+	// .isLength({ min: 11, max: 11 })
+	// .withMessage('El numero de identidad tiene requiere 11 caracteres')
+	check('year_of_life')
+		.isNumeric()
+		.withMessage('El ano de vida es un numero')
+		.isIn(['2', '3', '4', '5', '6'])
+		.withMessage('EL ano de vida solo pueden ser 2,3,4,5 y 6'),
+	check('sex')
+		.isString()
+		.withMessage('El sexo es un texto')
+		.isIn(['femenino', 'masculino'])
+		.withMessage('el sexo solo puede ser masculino o femenino'),
+	check('street').isString().withMessage('La calle donde vive el nino es un texto'),
+	check('between').isString().withMessage('Las entre calles donde vive el nino es un texto'),
+	check('house').isString().withMessage('El numero de casa donde vive el nino es un texto'),
+	check('stair').isString().withMessage('El numero de escalera de edificio donde vive el nino es un texto'),
+	check('locality').isString().withMessage('La localidad donde vive el nino es un texto'),
+	check('cPopular').isString().withMessage('El consejo popular donde vive el nino es un texto'),
+	check('municipality').isString().withMessage('El municipo donde vive el nino es un texto'),
+	check('province').isString().withMessage('La provincia donde vive el nino es un texto'),
 	validateResultError,
 ];
 
