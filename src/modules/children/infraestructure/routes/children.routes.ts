@@ -8,10 +8,10 @@ import {
 	updateChildrenById,
 } from '../controllers/children.controller';
 import {
-	validateRouteGetCirculoByID,
-	validateRouteCreateCirculo,
-	validateRouteRemoveCirculo,
-	validateRouteUpdateCirculo,
+	validateRouteGetChildrenByID,
+	validateRouteCreateChildren,
+	validateRouteRemoveChildren,
+	validateRouteUpdateChildren,
 } from '../../domain/validations/childrenRoutes.validate';
 
 const router = Router();
