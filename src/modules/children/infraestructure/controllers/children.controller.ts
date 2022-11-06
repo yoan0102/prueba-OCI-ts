@@ -4,10 +4,10 @@ import * as ChildrenService from '../../application/children.service';
 
 export const getChildrenAll = async (req: Request, res: Response) => {
 	try {
-		const circulos = await ChildrenService.getChildrenAll();
+		const childrens = await ChildrenService.getChildrenAll();
 
 		return res.json({
-			circulos,
+			childrens,
 		});
 	} catch (error) {
 		res.status(500).json({
@@ -17,14 +17,14 @@ export const getChildrenAll = async (req: Request, res: Response) => {
 	}
 };
 
-export const getCHildrenById = async (req: Request, res: Response) => {
+export const getChildrenById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
 
-		const circulo = await ChildrenService.getCirculoById(id);
+		const children = await ChildrenService.getChildrenById(id);
 
 		return res.json({
-			circulo,
+			children,
 		});
 	} catch (error) {
 		res.status(500).json({
@@ -34,11 +34,11 @@ export const getCHildrenById = async (req: Request, res: Response) => {
 	}
 };
 
-export const createCirculo = async (req: Request, res: Response) => {
-	const circuloBody: IChildren = req.body;
+export const createChildren = async (req: Request, res: Response) => {
+	const ChildrenBody: IChildren = req.body;
 	try {
-		const circulo = await ChildrenService.createCirculo(circuloBody);
-		res.status(201).json(circulo);
+		const children = await ChildrenService.createChildren(ChildrenBody);
+		res.status(201).json(children);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
@@ -47,13 +47,13 @@ export const createCirculo = async (req: Request, res: Response) => {
 	}
 };
 
-export const updateCirculoById = async (req: Request, res: Response) => {
+export const updateChildrenById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
 		const entity: IChildren = req.body;
 
-		const circuloUpdated = await ChildrenService.updateCirculoById(id, entity);
-		res.json(circuloUpdated);
+		const childrenUpdated = await ChildrenService.updateChildrenById(id, entity);
+		res.json(childrenUpdated);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
@@ -62,12 +62,12 @@ export const updateCirculoById = async (req: Request, res: Response) => {
 	}
 };
 
-export const removeCirculoById = async (req: Request, res: Response) => {
+export const removeChildrenById = async (req: Request, res: Response) => {
 	try {
 		const { id } = req.params;
 
-		const circuloUpdated = await ChildrenService.removeCirculoById(id);
-		res.json(circuloUpdated);
+		const childrenUpdated = await ChildrenService.removeChildrenById(id);
+		res.json(childrenUpdated);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
