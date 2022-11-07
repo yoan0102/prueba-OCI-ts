@@ -90,6 +90,41 @@ export const validateRouteCreateChildren = [
 		.notEmpty()
 		.withMessage('El municipio donde vive el nino es obligatorio'),
 	check('province').isString().withMessage('La provincia donde vive el nino es un texto'),
+	check('parents.fullNameParent')
+		.isString()
+		.withMessage('El nombre del padre es texto')
+		.notEmpty()
+		.withMessage('El nombre del padre es obligatorio'),
+	check('parents.phoneNumberParent')
+		.isString()
+		.withMessage('EL numero de telefono no es valido')
+		.notEmpty()
+		.withMessage('El numero de telefono es obligatorio'),
+	check('parents.occupation')
+		.isIn(['trabajador', 'jubilado', 'asistenciado'])
+		.withMessage('La ocupacion no es valida')
+		.notEmpty()
+		.withMessage('La ocupacion es obligatorio'),
+	check('parents.convivencia')
+		.isBoolean()
+		.withMessage('La convivencia es un boolean')
+		.notEmpty()
+		.withMessage('La convivencia es obligatorio'),
+	check('parents.work')
+		.isString()
+		.withMessage('El nombre del trabajo es un texto')
+		.notEmpty()
+		.withMessage('El nombre del trabajo es obligatorio'),
+	check('parents.workAddress')
+		.isString()
+		.withMessage('La direccion del trabajo es un texto')
+		.notEmpty()
+		.withMessage('La direccion del trabajo es obligatorio'),
+	check('parents.organismo')
+		.isString()
+		.withMessage('El organismo del trabajo es un texto')
+		.notEmpty()
+		.withMessage('El organismo del trabajo es obligatorio'),
 
 	// check('id').custom(issetChildrenId),
 	validateResultError,
