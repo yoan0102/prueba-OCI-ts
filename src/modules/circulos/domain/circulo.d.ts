@@ -16,4 +16,6 @@ export interface ICirculo {
 	porciento_asistencia4: number;
 	porciento_asistencia5: number;
 	status?: boolean;
+	lat: number;
+	long: number;
 }

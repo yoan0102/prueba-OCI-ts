@@ -72,6 +72,14 @@ const CirculoSchema = new mongoose.Schema<ICirculo>(
 			type: Boolean,
 			default: 1,
 		},
+		lat: {
+			type: Number,
+			required: true,
+		},
+		long: {
+			type: Number,
+			required: true,
+		},
 	},
 	{
 		timestamps: true,
