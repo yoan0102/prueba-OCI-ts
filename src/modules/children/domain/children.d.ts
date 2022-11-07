@@ -17,6 +17,8 @@ export interface IChildren {
 	province: string;
 	status: boolean;
 	circulo: Object;
+	lat: number;
+	long: number;
 	parents: IParent;
 }
 

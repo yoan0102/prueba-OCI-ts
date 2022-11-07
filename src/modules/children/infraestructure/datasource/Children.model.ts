@@ -72,6 +72,14 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 		circulo: {
 			type: [{ type: Schema.Types.ObjectId, ref: 'circulo' }],
 		},
+		lat: {
+			type: Number,
+			required: true,
+		},
+		long: {
+			type: Number,
+			required: true,
+		},
 		parents: {
 			fullNameParent: {
 				type: String,
