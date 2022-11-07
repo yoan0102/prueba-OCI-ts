@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IChildren } from './../../domain/children.d';
 
 const ChildrenSchema = new mongoose.Schema<IChildren>(
@@ -68,6 +68,85 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 		status: {
 			type: Boolean,
 			default: true,
+		},
+		circulo: {
+			type: [{ type: Schema.Types.ObjectId, ref: 'circulo' }],
+		},
+		parents: {
+			fullNameParent: {
+				type: String,
+				required: true,
+			},
+			uniqueParent: {
+				type: Boolean,
+			},
+			addressParent: {
+				type: String,
+			},
+			phoneNumberParent: {
+				type: String,
+				required: true,
+			},
+			typeParent: {
+				type: String,
+				enum: ['madre', 'padre', 'tutor'],
+				default: 'madre',
+			},
+			occupation: {
+				type: String,
+				enum: ['trabajador', 'jubilado', 'asistenciado'],
+				required: true,
+			},
+			convivencia: {
+				type: Boolean,
+				required: true,
+			},
+			work: {
+				type: String,
+				required: true,
+			},
+			workAddress: {
+				type: String,
+				required: true,
+			},
+			workPosition: {
+				type: String,
+			},
+			organismo: {
+				type: String,
+				required: true,
+			},
+			workPhoneParent: {
+				type: String,
+			},
+			entryTime: {
+				type: Date,
+			},
+			outTime: {
+				type: Date,
+			},
+			salary: {
+				type: Number,
+			},
+			otherChildren: {
+				type: Boolean,
+				default: false,
+			},
+			cantOtherChildren: {
+				type: Number,
+			},
+			ciOtherChildren: {
+				type: String,
+			},
+			pregnant: {
+				type: Boolean,
+			},
+			student: {
+				type: Boolean,
+			},
+			deaf: {
+				type: Boolean,
+			},
 		},
 	},
 	{

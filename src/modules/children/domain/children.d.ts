@@ -1,3 +1,4 @@
+import { IParent } from './parents';
 export interface IChildren {
 	nameChildren: string;
 	lastNameChildren: string;
@@ -15,6 +16,8 @@ export interface IChildren {
 	municipality: string;
 	province: string;
 	status: boolean;
+	circulo: Object;
+	parents: IParent;
 }
 
 export const enum SexChildren {
