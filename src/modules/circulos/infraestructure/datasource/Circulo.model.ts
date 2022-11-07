@@ -32,6 +32,10 @@ const CirculoSchema = new mongoose.Schema<ICirculo>(
 			type: Number,
 			required: true,
 		},
+		normed_capacity6: {
+			type: Number,
+			required: true,
+		},
 		matricula_total: {
 			type: Number,
 			required: true,
@@ -52,6 +56,10 @@ const CirculoSchema = new mongoose.Schema<ICirculo>(
 			type: Number,
 			required: true,
 		},
+		matricula6: {
+			type: Number,
+			required: true,
+		},
 		porciento_asistencia2: {
 			type: Number,
 			required: true,
@@ -65,6 +73,10 @@ const CirculoSchema = new mongoose.Schema<ICirculo>(
 			required: true,
 		},
 		porciento_asistencia5: {
+			type: Number,
+			required: true,
+		},
+		porciento_asistencia6: {
 			type: Number,
 			required: true,
 		},
