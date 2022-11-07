@@ -1,5 +1,6 @@
 import { IChildren } from '../domain/children';
 import Children from '../infraestructure/datasource/Children.model';
+import { radianesConvert } from 'shared/utils/radianesConvert';
 
 export const getChildrenAll = async () => {
 	const query = { status: 1 };
@@ -11,7 +12,13 @@ export const getChildrenById = async (id: string) => {
 };
 
 export const createChildren = async (entity: IChildren) => {
-	return await Children.create(entity);
+	const { lat, long, ...rest } = entity;
+	const { latRadianes, longRadianes } = radianesConvert(lat, long);
+	return await Children.create({
+		...rest,
+		lat: latRadianes,
+		long: longRadianes,
+	});
 };
 
 export const updateChildrenById = async (id: string, entity: IChildren) => {
