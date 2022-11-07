@@ -7,11 +7,11 @@ export const login = async (nickname: string, password: string) => {
 
 		const validPassword = await user?.comparePasswords(password);
 		if (!validPassword) {
-			throw new Error('Password is not valid');
+			throw new Error('Contraseña no valida');
 		}
 
 		if (user?.status === false) {
-			throw new Error(`User ${nickname} no existe`);
+			throw new Error(`El usuario ${nickname} no existe`);
 		}
 
 		const token = generateToken(user?._id);

@@ -32,7 +32,7 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			type: String,
 			required: true,
 			enum: {
-				values: ['masculino', 'masculino'],
+				values: ['masculino', 'femenino'],
 				message: '{VALUE} no soportado',
 			},
 		},

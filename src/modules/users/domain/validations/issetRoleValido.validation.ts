@@ -4,6 +4,6 @@ export const issetRoleValido = async (value: string) => {
 	const role = await Role.find({ role: value });
 
 	if (role.length === 0) {
-		throw new Error("Role doesn't exist");
+		throw new Error('El Role no exste');
 	}
 };
