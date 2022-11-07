@@ -10,26 +10,26 @@ const validateResultError = (req: Request, res: Response, next: NextFunction) =>
 	next();
 };
 
-export const validateRouteGetChildrenByID = [
+export const validateRouteGetSubmisionByID = [
 	// check('id').custom(issetUserId),
 	check('id').isMongoId().withMessage('Id no válido'),
 	validateResultError,
 ];
 
-export const validateRouteCreateChildren = [
+export const validateRouteCreateSubmision = [
 	// jwtValid,
 	// isAdminRole
-	check('nameChildren')
+	check('nameSubmision')
 		.isString()
 		.withMessage('El nombre es un texto')
 		.notEmpty()
 		.withMessage('El nombre es obligatorio'),
-	check('lastNameChildren')
+	check('lastNameSubmision')
 		.isString()
 		.withMessage('El primer apellido es un texto')
 		.notEmpty()
 		.withMessage('El primer apellido es obligatorio'),
-	check('lastNameChildren2')
+	check('lastNameSubmision2')
 		.isString()
 		.withMessage('El segundo apellido es un texto')
 		.notEmpty()
@@ -44,8 +44,8 @@ export const validateRouteCreateChildren = [
 	check('age')
 		.isNumeric()
 		.withMessage('La edad es un numero')
-		.isLength({ min: 1, max: 5 })
-		.withMessage('la edad debe estar entre 1 y 5')
+		// .isLength({ min: 11, max: 11 })
+		// .withMessage('El numero de identidad tiene requiere 11 caracteres')
 		.notEmpty()
 		.withMessage('La edad es obligatoria'),
 	check('year_of_life')
@@ -126,17 +126,17 @@ export const validateRouteCreateChildren = [
 		.notEmpty()
 		.withMessage('El organismo al que pertenece el trabajo es obligatorio'),
 
-	// check('id').custom(issetChildrenId),
+	// check('id').custom(issetSubmisionId),
 	validateResultError,
 ];
 
-export const validateRouteUpdateChildren = [
+export const validateRouteUpdateSubmision = [
 	// jwtValid,
 	// isAdminRole,
 	check('id', 'ID no valido').isMongoId(),
-	check('nameChildren').isString().withMessage('El nombre es un texto'),
-	check('lastNameChildren').isString().withMessage('El primer apellido es un texto'),
-	check('lastNameChildren2').isString().withMessage('El segundo apellido es un texto'),
+	check('nameSubmision').isString().withMessage('El nombre es un texto'),
+	check('lastNameSubmision').isString().withMessage('El primer apellido es un texto'),
+	check('lastNameSubmision2').isString().withMessage('El segundo apellido es un texto'),
 	check('noIdentity')
 		.isNumeric()
 		.withMessage('El numero de identidad es un numero')
@@ -168,7 +168,7 @@ export const validateRouteUpdateChildren = [
 	validateResultError,
 ];
 
-export const validateRouteRemoveChildren = [
+export const validateRouteRemoveSubmision = [
 	// jwtValid,
 	// isAdminRole,
 	check('id', 'ID no es valido').isMongoId(),
