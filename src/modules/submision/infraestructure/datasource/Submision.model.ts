@@ -19,6 +19,10 @@ const SubmisionSchema = new mongoose.Schema<ISubmision>(
 		motive: {
 			type: String,
 		},
+		status: {
+			type: Boolean,
+			default: true,
+		},
 		children: {
 			type: [{ type: Schema.Types.ObjectId, ref: 'children' }],
 			required: true,
