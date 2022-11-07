@@ -125,6 +125,7 @@ export const validateRouteCreateChildren = [
 		.withMessage('El organismo al que pertenece el trabajo es un texto')
 		.notEmpty()
 		.withMessage('El organismo al que pertenece el trabajo es obligatorio'),
+	check('circulo').isMongoId().withMessage('El circulo es un id de mongo'),
 
 	// check('id').custom(issetChildrenId),
 	validateResultError,
@@ -165,6 +166,7 @@ export const validateRouteUpdateChildren = [
 	check('cPopular').isString().withMessage('El consejo popular donde vive el niño es un texto'),
 	check('municipality').isString().withMessage('El municipo donde vive el niño es un texto'),
 	check('province').isString().withMessage('La provincia donde vive el niño es un texto'),
+	check('circulo').isMongoId().withMessage('El circulo es un id de mongo'),
 	validateResultError,
 ];
 

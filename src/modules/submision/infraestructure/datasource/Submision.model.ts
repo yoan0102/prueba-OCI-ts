@@ -21,6 +21,7 @@ const SubmisionSchema = new mongoose.Schema<ISubmision>(
 		},
 		children: {
 			type: [{ type: Schema.Types.ObjectId, ref: 'children' }],
+			required: true,
 		},
 	},
 	{
