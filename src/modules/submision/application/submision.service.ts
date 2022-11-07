@@ -3,11 +3,11 @@ import Submision from '../infraestructure/datasource/Submision.model';
 
 export const getSubmisionAll = async () => {
 	const query = { status: 1 };
-	return await Submision.find(query);
+	return await Submision.find(query).populate({ path: 'children', populate: { path: 'circulo', select: 'name' } });
 };
 
 export const getSubmisionById = async (id: string) => {
-	return await Submision.findById(id);
+	return await Submision.findById(id).populate({ path: 'children', populate: { path: 'circulo', select: 'name' } });
 };
 
 export const createSubmision = async (entity: ISubmision) => {
