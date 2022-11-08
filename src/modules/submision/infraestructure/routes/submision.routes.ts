@@ -12,11 +12,12 @@ import {
 	validateRouteCreateSubmision,
 	validateRouteRemoveSubmision,
 	validateRouteUpdateSubmision,
+	validateRouteGetSubmisionAll,
 } from '../../domain/validations/submisionRoutes.validate';
 
 const router = Router();
 
-router.get('/', getSubmisionAll);
+router.get('/', validateRouteGetSubmisionAll, getSubmisionAll);
 
 router.get('/:id', validateRouteGetSubmisionByID, getSubmisionById);
 

@@ -1,15 +1,20 @@
 import { check } from 'express-validator';
+import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
+import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
 import { validateResultError } from '../../../../shared/validations/validateResultError';
 import { issetSubmisionId } from './issetSubmision.validation.';
 
+export const validateRouteGetSubmisionAll = [jwtValid, validateResultError];
+
 export const validateRouteGetSubmisionByID = [
+	jwtValid,
 	check('id').isMongoId().withMessage('Id no válido').custom(issetSubmisionId).withMessage('Planilla no existe'),
 	validateResultError,
 ];
 
 export const validateRouteCreateSubmision = [
-	// jwtValid,
-	// isAdminRole
+	jwtValid,
+	isAdminRole,
 	check('children')
 		.isMongoId()
 		.withMessage('EL nino es un id de mongodb')
@@ -27,9 +32,9 @@ export const validateRouteCreateSubmision = [
 ];
 
 export const validateRouteUpdateSubmision = [
-	// jwtValid,
-	// isAdminRole
-	check('id', 'Id n o valido').isMongoId().custom(issetSubmisionId),
+	jwtValid,
+	isAdminRole,
+	check('id', 'Id no valido').isMongoId().custom(issetSubmisionId),
 	check('children').isMongoId().withMessage('EL nino es un id de mongodb'),
 	check('noEntry').isNumeric().withMessage('El numero de entrada es numerico'),
 	check('type').isIn(['nueva', 'traslado']).withMessage('El tipo no es valido'),
@@ -39,9 +44,8 @@ export const validateRouteUpdateSubmision = [
 ];
 
 export const validateRouteRemoveSubmision = [
-	// jwtValid,
-	// isAdminRole,
-	check('id', 'ID no es valido').isMongoId(),
-	check('id').custom(issetSubmisionId),
+	jwtValid,
+	isAdminRole,
+	check('id', 'ID no es valido').isMongoId().custom(issetSubmisionId),
 	validateResultError,
 ];
