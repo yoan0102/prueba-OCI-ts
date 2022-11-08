@@ -12,11 +12,12 @@ import {
 	validateRouteCreateChildren,
 	validateRouteRemoveChildren,
 	validateRouteUpdateChildren,
+	validateRouteGetChildrenAll,
 } from '../../domain/validations/childrenRoutes.validate';
 
 const router = Router();
 
-router.get('/', getChildrenAll);
+router.get('/', validateRouteGetChildrenAll, getChildrenAll);
 
 router.get('/:id', validateRouteGetChildrenByID, getChildrenById);
 

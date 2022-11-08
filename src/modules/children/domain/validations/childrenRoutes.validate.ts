@@ -1,24 +1,20 @@
-import { NextFunction, Request, Response } from 'express';
-import { check, validationResult } from 'express-validator';
+import { check } from 'express-validator';
+import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
+import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
+import { validateResultError } from '../../../../shared/validations/validateResultError';
+import { issetChildrenID } from './issetChildrenID';
 
-const validateResultError = (req: Request, res: Response, next: NextFunction) => {
-	// Finds the validation errors in this request and wraps them in an object with handy functions
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-	next();
-};
+export const validateRouteGetChildrenAll = [jwtValid, validateResultError];
 
 export const validateRouteGetChildrenByID = [
-	// check('id').custom(issetUserId),
-	check('id').isMongoId().withMessage('Id no válido'),
+	jwtValid,
+	check('id').isMongoId().withMessage('Id no válido').custom(issetChildrenID),
 	validateResultError,
 ];
 
 export const validateRouteCreateChildren = [
-	// jwtValid,
-	// isAdminRole
+	jwtValid,
+	isAdminRole,
 	check('nameChildren')
 		.isString()
 		.withMessage('El nombre es un texto')
@@ -126,14 +122,12 @@ export const validateRouteCreateChildren = [
 		.notEmpty()
 		.withMessage('El organismo al que pertenece el trabajo es obligatorio'),
 	check('circulo').isMongoId().withMessage('El circulo es un id de mongo'),
-
-	// check('id').custom(issetChildrenId),
 	validateResultError,
 ];
 
 export const validateRouteUpdateChildren = [
-	// jwtValid,
-	// isAdminRole,
+	jwtValid,
+	isAdminRole,
 	check('id', 'ID no valido').isMongoId(),
 	check('nameChildren').isString().withMessage('El nombre es un texto'),
 	check('lastNameChildren').isString().withMessage('El primer apellido es un texto'),
@@ -166,14 +160,13 @@ export const validateRouteUpdateChildren = [
 	check('cPopular').isString().withMessage('El consejo popular donde vive el niño es un texto'),
 	check('municipality').isString().withMessage('El municipo donde vive el niño es un texto'),
 	check('province').isString().withMessage('La provincia donde vive el niño es un texto'),
-	check('circulo').isMongoId().withMessage('El circulo es un id de mongo'),
+	check('circulo').isMongoId().withMessage('El circulo es un id de mongo').custom(issetChildrenID),
 	validateResultError,
 ];
 
 export const validateRouteRemoveChildren = [
-	// jwtValid,
-	// isAdminRole,
-	check('id', 'ID no es valido').isMongoId(),
-	// check('id').custom(issetCirculoId),
+	jwtValid,
+	isAdminRole,
+	check('id', 'ID no es valido').isMongoId().custom(issetChildrenID),
 	validateResultError,
 ];
