@@ -1,14 +1,15 @@
-import express, { Application } from 'express';
 import cors from 'cors';
+import express, { Application } from 'express';
 import helmet from 'helmet';
 import loger from 'morgan';
 
 import { connectDB } from '../../config/mongodb';
-import userRouter from '../../modules/users/infraestructure/routes/user.routes';
-import authRouter from '../../modules/users/infraestructure/routes/auth.routes';
-import circuloRouter from '../../modules/circulos/infraestructure/routes/circulo.routes';
 import childrenRouter from '../../modules/children/infraestructure/routes/children.routes';
+import circuloRouter from '../../modules/circulos/infraestructure/routes/circulo.routes';
 import submisionRouter from '../../modules/submision/infraestructure/routes/submision.routes';
+import authRouter from '../../modules/users/infraestructure/routes/auth.routes';
+import userRouter from '../../modules/users/infraestructure/routes/user.routes';
+import { roleSeeder } from '../../seeders/roles.seeders';
 
 export default class Server {
 	private app: Application;
@@ -28,6 +29,7 @@ export default class Server {
 		this.middlewares();
 		this.routes();
 		this.connectBD();
+		this.seeders();
 	}
 
 	connectBD() {
@@ -48,6 +50,10 @@ export default class Server {
 		this.app.use(this.apiPath.circulo, circuloRouter);
 		this.app.use(this.apiPath.children, childrenRouter);
 		this.app.use(this.apiPath.submision, submisionRouter);
+	}
+
+	seeders() {
+		roleSeeder();
 	}
 
 	listen() {
