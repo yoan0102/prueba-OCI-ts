@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
 import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
 import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
+import { issetCirculoID } from './issetCirculoId.validation';
 
 const validateResultError = (req: Request, res: Response, next: NextFunction) => {
 	// Finds the validation errors in this request and wraps them in an object with handy functions
@@ -13,8 +14,7 @@ const validateResultError = (req: Request, res: Response, next: NextFunction) =>
 };
 
 export const validateRouteGetCirculoByID = [
-	// check('id').custom(issetUserId),
-	check('id').isMongoId().withMessage('Id no válido'),
+	check('id').isMongoId().withMessage('Id no válido').custom(issetCirculoID),
 	validateResultError,
 ];
 
@@ -118,7 +118,7 @@ export const validateRouteCreateCirculo = [
 export const validateRouteUpdateCirculo = [
 	jwtValid,
 	isAdminRole,
-	check('id', 'ID no valido').isMongoId(),
+	check('id').isMongoId().withMessage('ID no valido').custom(issetCirculoID),
 	check('name', 'EL nombre es obligatorio').notEmpty(),
 	//capcacidad
 	check('capacidad_total').isNumeric().withMessage('La capacidad total es de tipo numerico'),
@@ -150,9 +150,8 @@ export const validateRouteUpdateCirculo = [
 ];
 
 export const validateRouteRemoveCirculo = [
-	// jwtValid,
-	// isAdminRole,
-	check('id', 'ID no es valido').isMongoId(),
-	// check('id').custom(issetCirculoId),
+	jwtValid,
+	isAdminRole,
+	check('id').isMongoId().withMessage('ID no es valido').custom(issetCirculoID),
 	validateResultError,
 ];
