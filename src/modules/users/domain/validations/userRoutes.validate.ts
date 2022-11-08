@@ -1,4 +1,6 @@
 import { check } from 'express-validator';
+import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
+import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
 import { validateResultError } from '../../../../shared/validations/validateResultError';
 import { issetNickName } from './issetNickName.valitation';
 import { issetRoleValido } from './issetRoleValido.validation';
@@ -10,6 +12,8 @@ export const validateRouteGetUserByID = [
 ];
 
 export const validateRouteCreateUser = [
+	jwtValid,
+	isAdminRole,
 	check('nick_name')
 		.notEmpty()
 		.withMessage('El nickname es obligatorio')
@@ -25,8 +29,8 @@ export const validateRouteCreateUser = [
 ];
 
 export const validateRouteUpdateUser = [
-	// jwtValid,
-	// isAdminRole,
+	jwtValid,
+	isAdminRole,
 	check('id', 'ID no valido').isMongoId().custom(issetUserId),
 	check('nick_name').not().custom(issetNickName).withMessage('El usuario no existe'),
 	check('first_name', 'EL nombre es obligatorio').notEmpty(),
@@ -38,8 +42,8 @@ export const validateRouteUpdateUser = [
 ];
 
 export const validateRouteRemoveUser = [
-	// jwtValid,
-	// isAdminRole,
+	jwtValid,
+	isAdminRole,
 	check('id', 'ID no es valido').isMongoId().custom(issetUserId),
 	validateResultError,
 ];

@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
+import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
+import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
 
 const validateResultError = (req: Request, res: Response, next: NextFunction) => {
 	// Finds the validation errors in this request and wraps them in an object with handy functions
@@ -17,8 +19,8 @@ export const validateRouteGetCirculoByID = [
 ];
 
 export const validateRouteCreateCirculo = [
-	// jwtValid,
-	// isAdminRole
+	jwtValid,
+	isAdminRole,
 	check('no').isNumeric().withMessage('El No. es de tipo numerico').notEmpty().withMessage('El no es obligatorio'),
 	check('name', 'EL nombre es obligatorio').notEmpty(),
 	//capcacidad
@@ -114,8 +116,8 @@ export const validateRouteCreateCirculo = [
 ];
 
 export const validateRouteUpdateCirculo = [
-	// jwtValid,
-	// isAdminRole,
+	jwtValid,
+	isAdminRole,
 	check('id', 'ID no valido').isMongoId(),
 	check('name', 'EL nombre es obligatorio').notEmpty(),
 	//capcacidad

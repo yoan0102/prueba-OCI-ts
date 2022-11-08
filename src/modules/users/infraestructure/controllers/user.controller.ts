@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { IUser } from 'modules/users/domain/users';
 import * as UserService from '../../application/user.service';
+import { IRequest } from 'types';
 
 export const getUserAll = async (req: Request, res: Response) => {
 	try {

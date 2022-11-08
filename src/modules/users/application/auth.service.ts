@@ -1,9 +1,9 @@
 import User from '../infraestructure/datasource/User.model';
 import { generateToken } from './utils/generateToken';
 
-export const login = async (nickname: string, password: string) => {
+export const login = async (nick_name: string, password: string) => {
 	try {
-		const user = await User.findOne({ nickname });
+		const user = await User.findOne({ nick_name: nick_name });
 
 		const validPassword = await user?.comparePasswords(password);
 		if (!validPassword) {
@@ -11,7 +11,7 @@ export const login = async (nickname: string, password: string) => {
 		}
 
 		if (user?.status === false) {
-			throw new Error(`El usuario ${nickname} no existe`);
+			throw new Error(`El usuario ${nick_name} no existe`);
 		}
 
 		const token = generateToken(user?._id);
