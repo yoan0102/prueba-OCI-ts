@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "concurrently  \"tsc -p .\" \"node dist/index.js\"",
 		"dev": "nodemon src/index.ts",
+		"seeders": "node dist/seeders/index.js",
 		"build": "tsc -p .",
 		"lint": "eslint .",
 		"formt": "prettier --write .",
