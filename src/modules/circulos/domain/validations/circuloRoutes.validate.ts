@@ -1,20 +1,15 @@
-import { NextFunction, Request, Response } from 'express';
-import { check, validationResult } from 'express-validator';
+import { check } from 'express-validator';
+import { validateResultError } from '../../../../shared/validations/validateResultError';
 import { isAdminRole } from '../../../../shared/middlewares/isAdminRole';
 import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
 import { issetCirculoID } from './issetCirculoId.validation';
 
-const validateResultError = (req: Request, res: Response, next: NextFunction) => {
-	// Finds the validation errors in this request and wraps them in an object with handy functions
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-	next();
-};
+export const validateRouteGetCirculoAll = [jwtValid, validateResultError];
 
 export const validateRouteGetCirculoByID = [
+	jwtValid,
 	check('id').isMongoId().withMessage('Id no válido').custom(issetCirculoID),
+
 	validateResultError,
 ];
 

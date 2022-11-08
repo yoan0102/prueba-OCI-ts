@@ -6,7 +6,9 @@ import { issetNickName } from './issetNickName.valitation';
 import { issetRoleValido } from './issetRoleValido.validation';
 import { issetUserId } from './issetUserId.validation';
 
+export const validateRouteGetUserAll = [jwtValid, validateResultError];
 export const validateRouteGetUserByID = [
+	jwtValid,
 	check('id').isMongoId().withMessage('Id no válido').custom(issetUserId),
 	validateResultError,
 ];

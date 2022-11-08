@@ -6,11 +6,12 @@ import {
 	validateRouteCreateUser,
 	validateRouteRemoveUser,
 	validateRouteUpdateUser,
+	validateRouteGetUserAll,
 } from '../../domain/validations/userRoutes.validate';
 
 const router = Router();
 
-router.get('/', getUserAll);
+router.get('/', validateRouteGetUserAll, getUserAll);
 
 router.get('/:id', validateRouteGetUserByID, getUserById);
 
