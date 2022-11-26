@@ -4,17 +4,20 @@ import { jwtValid } from '../../../../shared/middlewares/jwtValid.middleware';
 import { validateResultError } from '../../../../shared/validations/validateResultError';
 import { issetSubmisionId } from './issetSubmision.validation.';
 
-export const validateRouteGetSubmisionAll = [jwtValid, validateResultError];
+export const validateRouteGetSubmisionAll = [
+	// jwtValid,
+	validateResultError,
+];
 
 export const validateRouteGetSubmisionByID = [
-	jwtValid,
+	// jwtValid,
 	check('id').isMongoId().withMessage('Id no válido').custom(issetSubmisionId).withMessage('Planilla no existe'),
 	validateResultError,
 ];
 
 export const validateRouteCreateSubmision = [
-	jwtValid,
-	isAdminRole,
+	// jwtValid,
+	// isAdminRole,
 	check('children')
 		.isMongoId()
 		.withMessage('EL nino es un id de mongodb')
@@ -32,8 +35,8 @@ export const validateRouteCreateSubmision = [
 ];
 
 export const validateRouteUpdateSubmision = [
-	jwtValid,
-	isAdminRole,
+	// jwtValid,
+	// isAdminRole,
 	check('id', 'Id no valido').isMongoId().custom(issetSubmisionId),
 	check('children').isMongoId().withMessage('EL nino es un id de mongodb'),
 	check('noEntry').isNumeric().withMessage('El numero de entrada es numerico'),
@@ -44,8 +47,8 @@ export const validateRouteUpdateSubmision = [
 ];
 
 export const validateRouteRemoveSubmision = [
-	jwtValid,
-	isAdminRole,
+	// jwtValid,
+	// isAdminRole,
 	check('id', 'ID no es valido').isMongoId().custom(issetSubmisionId),
 	validateResultError,
 ];
