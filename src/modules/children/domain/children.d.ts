@@ -19,7 +19,7 @@ export interface IChildren {
 	circulo: Object;
 	lat: number;
 	long: number;
-	parents: IParent;
+	parents: Object;
 }
 
 export const enum SexChildren {

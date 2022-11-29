@@ -3,7 +3,7 @@ export interface IParent {
 	uniqueParent: boolean;
 	addressParent: string;
 	phoneNumberParent: string;
-	typeParent?: TypeParent.MADRE | TypeParent.PADRE | TypeParent.TUTOR;
+	typeParent: TypeParent.MADRE | TypeParent.PADRE | TypeParent.TUTOR;
 	occupation: Ocupation.TRABAJADOR | Ocupation.JUBILADO | Ocupation.ASISTENCIADO;
 	convivencia: boolean;
 	work: string;

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { IChildren } from './../../domain/children.d';
-import { IParent, TypeParent } from '../../domain/parents';
+import { IParent, TypeParent, Ocupation } from '../../domain/parents';
 
 const ChildrenSchema = new mongoose.Schema<IChildren>(
 	{
@@ -99,11 +99,11 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			typeParent: {
 				type: String,
 				enum: [TypeParent.MADRE, TypeParent.PADRE, TypeParent.TUTOR],
-				default: 'madre',
+				default: TypeParent.MADRE,
 			},
 			occupation: {
 				type: String,
-				enum: ['trabajador', 'jubilado', 'asistenciado'],
+				enum: [Ocupation.ASISTENCIADO, Ocupation.JUBILADO, Ocupation.TRABAJADOR],
 				required: true,
 			},
 			convivencia: {
