@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { IChildren } from './../../domain/children.d';
+import { IParent, TypeParent } from '../../domain/parents';
 
 const ChildrenSchema = new mongoose.Schema<IChildren>(
 	{
@@ -80,7 +81,7 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			type: Number,
 			required: true,
 		},
-		parents: {
+		parents: new mongoose.Schema<IParent>({
 			fullNameParent: {
 				type: String,
 				required: true,
@@ -97,7 +98,7 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			},
 			typeParent: {
 				type: String,
-				enum: ['madre', 'padre', 'tutor'],
+				enum: [TypeParent.MADRE, TypeParent.PADRE, TypeParent.TUTOR],
 				default: 'madre',
 			},
 			occupation: {
@@ -155,7 +156,7 @@ const ChildrenSchema = new mongoose.Schema<IChildren>(
 			deaf: {
 				type: Boolean,
 			},
-		},
+		}),
 	},
 	{
 		timestamps: true,
